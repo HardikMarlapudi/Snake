@@ -6,7 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: black;
+    background-color: #333;
     width: 450px;
     height: 450px;
 }
@@ -18,13 +18,12 @@
     color: white;
     font-size: 20px;
     border: none;
-    cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #scoreTracker {
-    display: block;
     text-align: center;
     font-size: 20px;
     margin: 2rem;

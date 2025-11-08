@@ -8,13 +8,15 @@ let game;
 const box = 20;
 
 function startGame() {
-    let score = 0;
+    score = 0;
     snake = [{x: 100, y: 100}];
     direction = "right";
+    
     food = {
         x: Math.floor(Math.random() * canvas.width / box) * box,
         y: Math.floor(Math.random() * canvas.height / box) * box
     };
+
     document.getElementById("scoreTracker").innerHTML = `Score: ${score}`;
     clearInterval(game);
     game = setInterval(drawGame, 100);
@@ -61,18 +63,23 @@ function drawGame() {
     if (direction === "down") head.y += box;
 
     // Wall Collision
-    if (
-        head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) { 
-        alert("Game over");
-        game = clearInterval(game);
+    if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) { 
+            clearInterval(game);
+            setTimeout(() => {
+            alert("Game over!");
+            startGame();
+        }, 1000);
         return;
     }
 
     // Snake Collision
     for (let segment of snake) {
         if (head.x === segment.x && head.y === segment.y) {
-            alert("Game over!");
-            game = clearInterval(game);
+            clearInterval(game);
+            setTimeout(() => {
+                alert("Game over!");
+                startGame();
+            }, 1000);
             return;
         } 
     }
@@ -80,10 +87,6 @@ function drawGame() {
     // Eat the food
     if (head.x === food.x && head.y === food.y) {
         score++;
-        snake = {
-            x: Math.floor(Math.random() * snake.width * 2),
-            y: Math.floor(Math.random() * snake.height * 2)
-        }
         document.getElementById("scoreTracker").textContent = "Score: " + score;
         food = {
             x: Math.floor(Math.random() * canvas.width / box) * box,
