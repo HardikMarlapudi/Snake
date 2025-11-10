@@ -66,7 +66,7 @@ function drawGame() {
     if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) { 
             clearInterval(game);
             setTimeout(() => {
-            alert("Game over!");
+            alert(`Game Over! You scored ${score} points.`);
             startGame();
         }, 1000);
         return;
@@ -77,7 +77,7 @@ function drawGame() {
         if (head.x === segment.x && head.y === segment.y) {
             clearInterval(game);
             setTimeout(() => {
-                alert("Game over!");
+                alert(`Game Over! You scored ${score} points.`);
                 startGame();
             }, 1000);
             return;
